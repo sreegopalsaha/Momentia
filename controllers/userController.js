@@ -21,8 +21,7 @@ module.exports.userRegister = async (req, res) => {
 
             const token = generateToken(user);
             res.cookie("userToken", token);
-            return res.send(user);
-
+            res.redirect("/feed");
         });
     });
 }
@@ -36,7 +35,7 @@ module.exports.userLogin = async (req, res) => {
         if(result){
             const token = generateToken(user);
             res.cookie("userToken", token);
-            return res.send("Logged in successful");
+            return res.redirect("/feed");
         }
         res.send("Incorrect password");
     });
