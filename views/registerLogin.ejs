@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script> 
+    <!-- The Play CDN is designed for development purposes only, and is not the best choice for production. -->
+</head>
+
+<body class="font-['helvetica_now_display']">
+    <div class="w-full h-screen flex px-20">
+        <div class="w-1/2 flex items-center justify-center h-screen">
+            <div class="w-full px-32">
+                
+                <h3 class="text-4xl">Welcome to <span class="text-blue-400 font-semibold">Momentia</span></h3>
+                <h4 class="text-2xl capitalize mb-5">Login your account</h4>
+                <form autocomplete="off" action="/user/login" method="post">
+                    <input required class="block bg-zinc-100 w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200"
+                        type="email" placeholder="Email" name="email">
+                    <input required class="block bg-zinc-100 w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200"
+                        type="password" placeholder="Password" name="password">
+                    <input class="px-5 block rounded-full py-3 mt-2 bg-blue-500 text-white" type="submit" value="Login">
+                </form>
+            </div>
+        </div>
+        
+        <div class="w-1/2 flex items-center justify-center h-screen">
+            <div class="w-full px-32">
+                <h4 class="text-2xl mb-5">Create your account</h4>
+                <form autocomplete="off" action="/user/register" method="post">
+                    <input required class="bg-zinc-100 block w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200"
+                        type="text" placeholder="Full Name" name="fullname">
+                    <input required class="bg-zinc-100 block w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200"
+                        type="email" placeholder="Email" name="email">
+                    <input required class="bg-zinc-100 block w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200"
+                        type="text" placeholder="User Name" name="username">
+                    <input required class="bg-zinc-100 block w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200"
+                        type="password" placeholder="Password" name="password">
+                    <input class="px-5 rounded-full py-3 mt-2 bg-blue-500 text-white" type="submit"
+                        value="Create My Account">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
