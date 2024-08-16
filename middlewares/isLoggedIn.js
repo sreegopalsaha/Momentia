@@ -5,7 +5,7 @@ module.exports.isUserLoggedIn = (req, res, next)=>{
     if(!token){
         return res.render('registerLogin');
     }
-    const user = jwt.verify(token, process.env.JWT_KEY);
+    const user = jwt.verify(token, process.env.JWT_SECRET);
     req.user = user;
     next();
 }
