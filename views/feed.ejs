@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="flex w-screen h-screen gap-1 pl-[10rem] pr-[10rem] overflow-x-hidden relative">
+
+        <div class="fixed h-10 w-screen z-10 bg-white">
+
+        </div>
+
+        <div class="leftScreen pt-12 w-1/2 h-full sticky flex flex-col gap-5 top-0">
+
+            <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl">
+                <i class="text-blue-700 fa-solid fa-house"></i>
+                <P class="">Home</P>
+            </div>
+
+            <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl">
+                <i class="text-blue-700 fa-solid fa-search"></i>
+                <P class="">Explore</P>
+            </div>
+
+            <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl">
+                <i class="text-blue-700 fa-regular fa-bell"></i>
+                <P class="">Notifications</P>
+            </div>
+
+            <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl">
+                <i class="text-blue-700 fa-regular fa-envelope"></i>
+                <P class="">Inbox</P>
+            </div>
+
+            <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl">
+                <i class="text-blue-700 fa-regular fa-bookmark"></i>
+                <P class="">Saved</P>
+            </div>
+
+            <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl">
+                <i class="text-blue-700 fa-solid fa-user-group"></i>
+                <P class="">Groups</P>
+            </div>
+
+            <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl">
+                <i class="text-blue-700 fa-solid fa-gear"></i>
+                <P class="">Settings</P>
+            </div>
+
+            <div class="userDetails hover:bg-zinc-200 p-2 rounded-full flex gap-1 items-center justify-start gap-2"> <!-- User Details of recommondation -->
+                <div class="profilePic w-12 h-12 overflow-hidden rounded-full"> <!-- User Profile picture -->
+                    <img class="w-12" src="https://media.licdn.com/dms/image/D4D03AQGG79xYxGe2uQ/profile-displayphoto-shrink_200_200/0/1694942905209?e=2147483647&v=beta&t=I5P_2oMiMWQcEk_A2KMTobYaZkrwhAyzKVWBs4cZcvc"
+                    alt="">
+                </div>
+                <div class="nameAndUsername flex flex-col items-start justify-center ">
+                    <p class="font-extrabold">Sree Gopal Saha</p> <!-- user name -->
+                    <p class="text-sm leading-none">@sreegopalsaha</p> <!-- username  -->
+                </div>
+
+                <div class="followBtn ml-5 p-2 bg-red-500 text-white rounded-full cursor-pointer">
+                    Logout
+                </div>
+            </div> <!-- User Details of recommondation ends from here -->
+
+
+            
+        </div> <!-- leftScreen ends from here -->
+
+        <div class="middleScreen bg-zinc-100 w-[60rem] mt-11 h-fit pb-10 flex flex-col gap-2 pl-2 pr-2">
+            <div
+                class="navContainer w-full h-[4rem] flex justify-center items-center rounded-lg overflow-hidden border-2 border-zinc-200">
+                <button class="w-1/3 h-full bg-blue-500 text-white text-xl">Feed</button>
+                <button class="w-1/3 h-full hover:bg-blue-300 hover:text-white text-xl">Notifications</button>
+                <button class="w-1/3 h-full hover:bg-blue-300 hover:text-white text-xl">Inbox</button>
+            </div> <!-- navContainer ends from here -->
+            <div
+                class="newPostContainer w-full h-[4rem] rounded-lg bg-white flex justify-center items-center gap-2 border-2 border-zinc-200 pl-4 pr-4">
+                <div class="profilePicDiv w-10 h-10 rounded-full overflow-hidden">
+                    <img class="w-10"
+                        src="https://media.licdn.com/dms/image/D4D03AQGG79xYxGe2uQ/profile-displayphoto-shrink_200_200/0/1694942905209?e=2147483647&v=beta&t=I5P_2oMiMWQcEk_A2KMTobYaZkrwhAyzKVWBs4cZcvc"
+                        alt="">
+                </div>
+                <textarea placeholder="Whats on your mind!" class="resize-none w-full h-full pl-1 pt-4 outline-none"
+                    name="" id=""></textarea>
+                <button class="w-16 h-10 bg-blue-500 hover:bg-sky-700 text-white rounded-lg">Post</button>
+            </div> <!-- newPostContainer ends -->
+
+            <div class="postContainer border-2 border-zinc-200 w-full h-fit p-4">
+                <div class="userDetails flex items-center gap-1 h-12">
+                    <div class="profilePicDiv w-10 h-10 rounded-full overflow-hidden">
+                        <img class="w-10"
+                            src="https://media.licdn.com/dms/image/D4D03AQGG79xYxGe2uQ/profile-displayphoto-shrink_200_200/0/1694942905209?e=2147483647&v=beta&t=I5P_2oMiMWQcEk_A2KMTobYaZkrwhAyzKVWBs4cZcvc"
+                            alt="">
+                    </div>
+
+                    <div class="nameAndTimeDiv flex-col items-start justify-center">
+                        <div class="flex gap-2 items-center justify-center">
+                            <p class="font-bold">Sree Gopal Saha</p>
+                            <i class="fa-solid fa-check" style="color: #74C0FC;"></i>
+                        </div>
+                        <p class="leading-none text-sm">
+                            11 min ago
+                        </p>
+                    </div>             
+                </div> <!-- userDetails ends -->
+
+                <div class="postContent h-fit w-full mt-2">
+                    <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem eveniet amet natus hic, beatae nesciunt, sunt alias magni fugit in maxime explicabo doloribus sequi illo. Excepturi alias dignissimos labore quidem.</p>
+                </div> <!-- postContent ends -->
+
+                <div class="postImage w-full h-[15rem] flex items-center justify-center">
+                    <img class=" h-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGaPC_xdKK5gRny6KkJQonnzAWEz1pnEPC1Q&s" alt="">
+                </div> <!-- postImage ends -->
+
+                <div class="postInteractionsDiv flex gap-10 items-center justify-start mt-3">
+
+                    <div class="group likeDiv rounded-lg border-2 border-zinc-300 p-2 flex gap-1 items-center justify-center cursor-pointer">
+                        <i class="fa-regular fa-heart group-hover:text-red-500 text-blue-400"></i>
+                        <p>Like</p>
+                    </div>
+
+                    <div class="commentDiv rounded-lg border-2 border-zinc-300 p-2  flex gap-1 items-center justify-center cursor-pointer">
+                        <i class="fa-regular fa-comment-dots text-green-500"></i>
+                        <p>Comment</p>
+                    </div>
+
+                    <div class="shareDiv rounded-lg border-2 border-zinc-300 p-2 flex gap-1 items-center justify-center cursor-pointer">
+                        <i class="fa-solid fa-share text-orange-400"></i>
+                        <p>Share</p>
+                    </div>
+                </div>
+                <!-- postInteractions ends -->
+            </div> <!--  post container ends from here -->
+
+            <div class="postContainer border-2 border-zinc-200 w-full h-fit p-4">
+                <div class="userDetails flex items-center gap-1 h-12">
+                    <div class="profilePicDiv w-10 h-10 rounded-full overflow-hidden">
+                        <img class="w-10"
+                            src="https://media.licdn.com/dms/image/D4D03AQGG79xYxGe2uQ/profile-displayphoto-shrink_200_200/0/1694942905209?e=2147483647&v=beta&t=I5P_2oMiMWQcEk_A2KMTobYaZkrwhAyzKVWBs4cZcvc"
+                            alt="">
+                    </div>
+
+                    <div class="nameAndTimeDiv flex-col items-start justify-center">
+                        <div class="flex gap-2 items-center justify-center">
+                            <p class="">Sree Gopal Saha</p>
+                            <i class="fa-solid fa-check" style="color: #74C0FC;"></i>
+                        </div>
+                        <p class="leading-none">
+                            11 min ago
+                        </p>
+                    </div>             
+                </div> <!-- userDetails ends -->
+
+                <div class="postContent h-fit w-full">
+                    <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem eveniet amet natus hic, beatae nesciunt, sunt alias magni fugit in maxime explicabo doloribus sequi illo. Excepturi alias dignissimos labore quidem.</p>
+                </div> <!-- postContent ends -->
+
+                <div class="postImage w-full h-[15rem] flex items-center justify-center">
+                    <img class=" h-full" src="https://i.ytimg.com/vi/hllsOtU1CEA/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCcLUOrnis-WejCviUu6sh4I8taHA" alt="">
+                </div> <!-- postImage ends -->
+
+                <div class="postInteractionsDiv flex gap-10 items-center justify-start mt-3">
+
+                    <div class="likeDiv rounded-lg border-2 border-zinc-300 p-2 flex gap-1 items-center justify-center cursor-pointer">
+                        <i class="fa-regular fa-heart" style="color: #B197FC;"></i>
+                        <p>Like</p>
+                    </div>
+
+                    <div class="commentDiv rounded-lg border-2 border-zinc-300 p-2  flex gap-1 items-center justify-center cursor-pointer">
+                        <i class="fa-regular fa-comment-dots" style="color: #63E6BE;"></i>
+                        <p>Comment</p>
+                    </div>
+
+                    <div class="shareDiv rounded-lg border-2 border-zinc-300 p-2 flex gap-1 items-center justify-center cursor-pointer">
+                        <i class="fa-solid fa-share" style="color: #63E6BE;"></i>
+                        <p>Share</p>
+                    </div>
+                </div>
+                <!-- postInteractions ends -->
+
+            </div> <!--  post container ends from here -->
+        </div> <!-- middleScreen ends from here -->
+
+        <div class="rightScreen pt-12 w-1/2 h-full sticky top-0">
+
+            <div class="w-full h-fit p-4 border-2 border-zinc-200 rounded-lg">  <!-- follow recommondation -->
+                <p class="text-xl font-black mb-5">Who to follow</p>
+
+                <div class="flex flex-col gap-6">
+
+                    <div class="userDetails flex gap-1 items-center justify-start gap-2"> <!-- User Details of recommondation -->
+                        <div class="profilePic w-12 h-12 overflow-hidden rounded-full"> <!-- User Profile picture -->
+                            <img class="w-12" src="https://media.licdn.com/dms/image/D4D03AQGG79xYxGe2uQ/profile-displayphoto-shrink_200_200/0/1694942905209?e=2147483647&v=beta&t=I5P_2oMiMWQcEk_A2KMTobYaZkrwhAyzKVWBs4cZcvc"
+                            alt="">
+                        </div>
+                        <div class="nameAndUsername flex flex-col items-start justify-center ">
+                            <p class="font-extrabold">Sree Gopal Saha</p> <!-- user name -->
+                            <p class="text-sm leading-none">@sreegopalsaha</p> <!-- username  -->
+                        </div>
+
+                        <div class="followBtn ml-5 p-1 pl-4 pr-4 bg-blue-500 text-white rounded-full cursor-pointer">
+                            Follow
+                        </div>
+                    </div> <!-- User Details of recommondation ends from here -->
+
+                    <div class="userDetails flex gap-1 items-center justify-start gap-2"> <!-- User Details of recommondation -->
+                        <div class="profilePic w-12 h-12 overflow-hidden rounded-full"> <!-- User Profile picture -->
+                            <img class="w-12" src="https://media.licdn.com/dms/image/D4D03AQGG79xYxGe2uQ/profile-displayphoto-shrink_200_200/0/1694942905209?e=2147483647&v=beta&t=I5P_2oMiMWQcEk_A2KMTobYaZkrwhAyzKVWBs4cZcvc"
+                            alt="">
+                        </div>
+                        <div class="nameAndUsername flex flex-col items-start justify-center ">
+                            <p class="font-extrabold">Sree Gopal Saha</p> <!-- user name -->
+                            <p class="text-sm leading-none">@sreegopalsaha</p> <!-- username  -->
+                        </div>
+
+                        <div class="followBtn ml-5 p-1 pl-4 pr-4 bg-blue-500 text-white rounded-full cursor-pointer">
+                            Follow
+                        </div>
+                    </div> <!-- User Details of recommondation ends from here -->
+
+                    <div class="userDetails flex gap-1 items-center justify-start gap-2"> <!-- User Details of recommondation -->
+                        <div class="profilePic w-12 h-12 overflow-hidden rounded-full"> <!-- User Profile picture -->
+                            <img class="w-12" src="https://media.licdn.com/dms/image/D4D03AQGG79xYxGe2uQ/profile-displayphoto-shrink_200_200/0/1694942905209?e=2147483647&v=beta&t=I5P_2oMiMWQcEk_A2KMTobYaZkrwhAyzKVWBs4cZcvc"
+                            alt="">
+                        </div>
+                        <div class="nameAndUsername flex flex-col items-start justify-center ">
+                            <p class="font-extrabold">Sree Gopal Saha</p> <!-- user name -->
+                            <p class="text-sm leading-none">@sreegopalsaha</p> <!-- username  -->
+                        </div>
+
+                        <div class="followBtn ml-5 p-1 pl-4 pr-4 bg-blue-500 text-white rounded-full cursor-pointer">
+                            Follow
+                        </div>
+                    </div> <!-- User Details of recommondation ends from here -->
+
+                </div>
+            </div> <!-- follow recommondation ends from here -->
+
+        </div> <!-- rightScreen ends from here -->
+    </div> <!-- main div ends -->
+</body>
+
+</html>
