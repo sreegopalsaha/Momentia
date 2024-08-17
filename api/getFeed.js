@@ -5,8 +5,11 @@ const getFeed = async (req, res) => {
 
     const user = await userModel.findById(req.user.id).populate('following');
     const followingUserIds = user.following.map(followingUser => followingUser._id);
+    followingUserIds.push(user._id);
     const followingPosts = await postModel.find({ author: { $in: followingUserIds } })
-     .sort({ createdAt: -1 });
+    .populate("author", "fullname username")
+    .sort({ createdAt: -1 })
+    .limit(10);
 
      res.json(followingPosts);
 
