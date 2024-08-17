@@ -86,17 +86,32 @@
                 <button class="w-1/3 h-full hover:bg-blue-300 hover:text-white text-xl">Notifications</button>
                 <button class="w-1/3 h-full hover:bg-blue-300 hover:text-white text-xl">Inbox</button>
             </div> <!-- navContainer ends from here -->
-            <div
-                class="newPostContainer w-full h-[4rem] rounded-lg bg-white flex justify-center items-center gap-2 border-2 border-zinc-200 pl-4 pr-4">
-                <div class="profilePicDiv w-10 h-10 rounded-full overflow-hidden">
-                    <img class="w-10"
-                        src="https://media.licdn.com/dms/image/D4D03AQGG79xYxGe2uQ/profile-displayphoto-shrink_200_200/0/1694942905209?e=2147483647&v=beta&t=I5P_2oMiMWQcEk_A2KMTobYaZkrwhAyzKVWBs4cZcvc"
-                        alt="">
-                </div>
-                <textarea placeholder="Whats on your mind!" class="resize-none w-full h-full pl-1 pt-4 outline-none"
-                    name="" id=""></textarea>
-                <button class="w-16 h-10 bg-blue-500 hover:bg-sky-700 text-white rounded-lg">Post</button>
-            </div> <!-- newPostContainer ends -->
+
+            <form action="/post/new" method="post"
+            class="newPostContainer w-full h-fit rounded-lg flex flex-col gap-1 border-2 border-zinc-200 p-4">
+
+           <div class="flex justify-center items-center">
+            <div class="profilePicDiv w-10 h-10 rounded-full overflow-hidden flex items-center justify-center">
+                <img class="w-10"
+                    src="https://media.licdn.com/dms/image/D4D03AQGG79xYxGe2uQ/profile-displayphoto-shrink_200_200/0/1694942905209?e=2147483647&v=beta&t=I5P_2oMiMWQcEk_A2KMTobYaZkrwhAyzKVWBs4cZcvc"
+                    alt="">
+            </div>
+            <textarea placeholder="Whats on your mind!" class="resize-none w-full h-full pl-1 pt-4 outline-none"
+                name="" id=""></textarea>
+            <button type="submit" class="w-16 h-10 bg-blue-500 hover:bg-sky-700 text-white rounded-lg">Post</button>
+        </div>
+
+            <div class="w-full h-fit flex justify-start items-center gap-5 pl-10 text-xl">
+                <i id="imageUploader" class="fa-regular fa-image"></i>
+                <input id="postImgInput" class="hidden" type="file">
+
+                <i class="fa-regular fa-face-kiss-beam"></i>
+
+                <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <img id="imagePreview" class="hidden mt-4 w-24 h-fit object-cover rounded-md" />
+
+        </form> <!-- newPostContainer ends -->
 
             <!---------------------------------------------------
                     All posts container start from here
