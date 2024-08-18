@@ -46,3 +46,18 @@ module.exports.userLogout = (req, res) => {
     res.send("You are logout");
 }
 
+module.exports.userFollow = async(req, res) => {
+    const currentUser = await userModel.findById(req.user.id);
+    const toBeFollowUser = await userModel.findById(req.params.toBeFollowUserId);
+    if(!toBeFollowUser) return res.json("");
+    const isFollowed = currentUser.following.indexOf(toBeFollowUser._id);
+
+    if(isFollowed === -1){
+    currentUser.following.push(toBeFollowUser._id);
+    await currentUser.save();
+    return res.json("1");
+    }
+    currentUser.following.splice(isFollowed, 1);
+    await currentUser.save();
+    return res.json("-1");
+}
