@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else {
         data.forEach(post => {
             const postContainer = document.createElement("div");
-            postContainer.classList.add("postContainer", "border-2", "border-zinc-200", "rounded-lg", "w-full", "h-fit", "p-4");
+            postContainer.classList.add("postContainer", "border-2", "border-zinc-200", "rounded-lg", "w-full", "h-fit", "p-4" , "max-h-[30rem]");
 
             postContainer.innerHTML = `
             <div class="userDetails flex items-center gap-1 h-12">
@@ -45,8 +45,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <p>${post.content}</p>
             </div> <!-- postContent ends -->
     
-            <div class="postImage w-full h-[15rem] flex items-center justify-center">
-                <img class=" h-full"
+            <div class="postImage w-full h-fit flex items-center justify-center">
+                <img class=" max-h-[15rem]"
                     src="/media/uploads/${post.image}"
                     alt="">
             </div> <!-- postImage ends -->
