@@ -3,6 +3,25 @@ const postImgInput = document.querySelector("#postImgInput");
 const allPostsContainer = document.querySelector(".allPostsContainer");
 const userId = document.querySelector('.userDetails').dataset.userId;
 
+// calculateTime start from here
+const calculateTime = (dbTime) => {
+    const givenTime = new Date(dbTime);
+    const currentTime = new Date();
+    const diffTimeInMilli = currentTime - givenTime;
+    const timeInMin = Math.ceil(diffTimeInMilli / 60000);
+
+    if (timeInMin < 60) {
+        return `${timeInMin} min ago`;
+    } else if (timeInMin < 1440) { // 1440 minutes = 24 hours
+        const timeInHours = Math.ceil(timeInMin / 60);
+        return `${timeInHours} hour${timeInHours > 1 ? 's' : ''} ago`;
+    } else {
+        const timeInDays = Math.ceil(timeInMin / 1440);
+        return `${timeInDays} day${timeInDays > 1 ? 's' : ''} ago`;
+    }
+};
+
+
 document.addEventListener("DOMContentLoaded", async () => {
     const res = await fetch("http://localhost:3000/api/getFeed", {
         method: 'GET',
@@ -37,7 +56,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         <i class="fa-solid fa-check" style="color: #74C0FC;"></i>
                     </div>
                     <p class="leading-none text-sm">
-                        11 min ago
+                        ${calculateTime(post.createdAt)}
                     </p>
                 </div>
             </div> <!-- userDetails ends -->

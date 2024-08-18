@@ -20,46 +20,46 @@
 
         <div class="leftScreen pt-12  pl-[10rem] pr-5 w-[32rem] h-screen sticky top-0 flex flex-col gap-5">
 
-            <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl">
+            <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl cursor-pointer">
                 <i class="text-blue-700 fa-solid fa-house"></i>
                 <P class="">Home</P>
             </div>
 
-            <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl">
+            <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl cursor-pointer">
                 <i class="text-blue-700 fa-solid fa-search"></i>
                 <P class="">Explore</P>
             </div>
 
-            <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl">
+            <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl cursor-pointer">
                 <i class="text-blue-700 fa-regular fa-bell"></i>
                 <P class="">Notifications</P>
             </div>
 
-            <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl">
+            <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl cursor-pointer">
                 <i class="text-blue-700 fa-regular fa-envelope"></i>
                 <P class="">Inbox</P>
             </div>
 
-            <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl">
+            <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl cursor-pointer">
                 <i class="text-blue-700 fa-regular fa-bookmark"></i>
                 <P class="">Saved</P>
             </div>
 
-            <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl">
+            <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl cursor-pointer">
                 <i class="text-blue-700 fa-solid fa-user-group"></i>
                 <P class="">Groups</P>
             </div>
 
-            <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl">
+            <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl cursor-pointer">
                 <i class="text-blue-700 fa-solid fa-gear"></i>
                 <P class="">Settings</P>
             </div>
 
-            <div data-user-id="<%= user._id %>" class="userDetails hover:bg-zinc-200 p-2 rounded-full flex gap-1 items-center justify-start gap-2">
+            <div data-user-id="<%= user._id %>" class="userDetails hover:bg-zinc-200 p-2 rounded-full flex gap-1 items-center justify-start gap-2 cursor-pointer">
                 <!-- User Details of loggedin user -->
                 <div class="profilePic w-12 h-12 overflow-hidden rounded-full"> <!-- User Profile picture -->
                     <img class="w-12"
-                        src="https://media.licdn.com/dms/image/D4D03AQGG79xYxGe2uQ/profile-displayphoto-shrink_200_200/0/1694942905209?e=2147483647&v=beta&t=I5P_2oMiMWQcEk_A2KMTobYaZkrwhAyzKVWBs4cZcvc"
+                        src="/media/uploads/<%=user.profilePicture%>"
                         alt="">
                 </div>
                 <div class="nameAndUsername flex flex-col items-start justify-center ">
@@ -93,7 +93,7 @@
            <div class="flex justify-center items-center">
             <div class="profilePicDiv w-10 h-10 rounded-full overflow-hidden flex items-center justify-center">
                 <img class="w-10"
-                    src="https://media.licdn.com/dms/image/D4D03AQGG79xYxGe2uQ/profile-displayphoto-shrink_200_200/0/1694942905209?e=2147483647&v=beta&t=I5P_2oMiMWQcEk_A2KMTobYaZkrwhAyzKVWBs4cZcvc"
+                    src="/media/uploads/<%=user.profilePicture%>"
                     alt="">
             </div>
             <textarea placeholder="Whats on your mind!" class="resize-none w-full h-full pl-1 pt-4 outline-none"
