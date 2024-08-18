@@ -16,7 +16,7 @@ module.exports.userRegister = async (req, res) => {
                 email,
                 username,
                 password: hash,
-                profilePicture: "defaultprofilepic.jpge"
+                profilePicture: "defaultprofilepic.jpg"
             });
 
             const token = generateToken(user);

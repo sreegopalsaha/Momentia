@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             <div class="userDetails flex items-center gap-1 h-12">
                 <div class="profilePicDiv w-10 h-10 rounded-full overflow-hidden">
                     <img class="w-10"
-                        src="https://media.licdn.com/dms/image/D4D03AQGG79xYxGe2uQ/profile-displayphoto-shrink_200_200/0/1694942905209?e=2147483647&v=beta&t=I5P_2oMiMWQcEk_A2KMTobYaZkrwhAyzKVWBs4cZcvc"
+                        src="/media/uploads/${post.author.profilePicture}"
                         alt="">
                 </div>
     
