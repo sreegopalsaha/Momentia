@@ -18,4 +18,22 @@ const newPost = async (req, res) => {
     return res.redirect("/feed");
 }
 
-module.exports = { newPost };
+const likePost = async (req, res) =>{
+     const userId = req.user.id;
+     const postId = req.params.postId;
+
+     const user = await userModel.findById(userId);
+     const post = await postModel.findById(postId);
+
+     const isLiked = post.likes.indexOf(userId);
+     if(isLiked === -1){
+        post.likes.push(userId);
+        post.save();
+        return res.json(post.likes.length);
+    }
+    post.likes.splice(isLiked, 1);
+    await post.save();
+    return res.json(post.likes.length);
+    }
+
+module.exports = { newPost, likePost };

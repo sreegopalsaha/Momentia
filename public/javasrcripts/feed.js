@@ -1,6 +1,7 @@
 const imageUploader = document.querySelector("#imageUploader");
 const postImgInput = document.querySelector("#postImgInput");
 const allPostsContainer = document.querySelector(".allPostsContainer");
+const userId = document.querySelector('.userDetails').dataset.userId;
 
 document.addEventListener("DOMContentLoaded", async () => {
     const res = await fetch("http://localhost:3000/api/getFeed", {
@@ -54,9 +55,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             <div class="postInteractionsDiv flex gap-10 items-center justify-start mt-3">
     
                 <div
-                    class="group likeDiv rounded-lg border-2 border-zinc-300 p-2 flex gap-1 items-center justify-center cursor-pointer">
-                    <i class="fa-regular fa-heart group-hover:text-red-500 text-blue-400"></i>
-                    <p>${post.likes.length}</p>
+                    class="group likesDiv rounded-lg border-2 border-zinc-300 p-2 flex gap-1 items-center justify-center cursor-pointer">
+                    <i class="likeSticker ${post.likes.includes(userId) ? "liked fa-solid text-red-500" : "fa-regular text-blue-400"} fa-heart group-hover:text-red-500"></i>
+                    <p class="likesCount">${post.likes.length}</p>
                 </div>
     
                 <div
@@ -73,13 +74,44 @@ document.addEventListener("DOMContentLoaded", async () => {
             </div> <!-- postInteractions ends -->`
 
             allPostsContainer.appendChild(postContainer);
+
+            const likesDiv = postContainer.querySelector(".likesDiv");
+            const likesCount = postContainer.querySelector(".likesCount");
+            const likeSticker = likesDiv.querySelector(".likeSticker");
+
+            likesDiv.addEventListener("click", async () => {
+
+                likeSticker.classList.toggle("liked");
+                
+               const isLiked = likeSticker.classList.contains('liked');
+
+                if(isLiked){
+                    likesCount.innerText = parseInt(likesCount.innerText) + 1;
+                    likeSticker.classList.replace("fa-regular", "fa-solid");
+                    likeSticker.classList.replace("text-blue-400", "text-red-500");
+
+                } else{
+                    likesCount.innerText = parseInt(likesCount.innerText) - 1;
+                    likeSticker.classList.replace("fa-solid", "fa-regular");
+                    likeSticker.classList.replace("text-red-500", "text-blue-400");
+                }
+
+                const res = await fetch(`http://localhost:3000/post/like/${post._id}`, {
+                    method: 'POST',
+                    credentials: 'include'
+                });
+
+                const data = await res.json();
+                console.log(data);
+                likesCount.innerText = data;
+            });
         });
     }
 });
 
 
 // _________________________________________________
-//		imageUploader start here
+//		imageUploader start from here
 //_________________________________________________
 imageUploader.addEventListener("click", () => {
     postImgInput.click();
@@ -96,4 +128,3 @@ postImgInput.addEventListener("change", () => {
         reader.readAsDataURL(file);
     }
 });
-
