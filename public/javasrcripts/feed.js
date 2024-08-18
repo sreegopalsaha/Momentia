@@ -42,8 +42,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 </div>
             </div> <!-- userDetails ends -->
     
-            <div class="postContent h-fit w-full mt-2">
-                <p>${post.content}</p>
+            <div class="postContent h-fit w-full max-w-full">
+                <p class="break-words">${post.content}</p>
             </div> <!-- postContent ends -->
     
             <div class="postImage w-full h-fit flex items-center justify-center">

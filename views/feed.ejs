@@ -12,13 +12,13 @@
 </head>
 
 <body>
-    <div class="flex w-screen h-screen gap-1 pl-[10rem] pr-[10rem] overflow-x-hidden relative">
+    <div class="flex w-screen h-screen gap-1 justify-center relative overflow-x-hidden">
 
         <div class="fixed h-10 w-screen z-10 bg-white">
 
         </div>
 
-        <div class="leftScreen pt-12 w-1/2 h-full sticky flex flex-col gap-5 top-0">
+        <div class="leftScreen pt-12  pl-[10rem] pr-5 w-[32rem] h-screen sticky top-0 flex flex-col gap-5">
 
             <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl">
                 <i class="text-blue-700 fa-solid fa-house"></i>
@@ -79,7 +79,7 @@
 
         </div> <!-- leftScreen ends from here -->
 
-        <div class="middleScreen w-[60rem] mt-11 h-fit pb-10 flex flex-col gap-2 pl-2 pr-2">
+        <div class="middleScreen min-w-[30rem] w-[30rem] mt-11 h-fit pb-10 flex flex-col gap-2 pl-2 pr-2">
             <div
                 class="navContainer w-full h-[4rem] flex justify-center items-center rounded-lg overflow-hidden border-2 border-zinc-200">
                 <button class="w-1/3 h-full bg-blue-500 text-white text-xl">Feed</button>
@@ -216,7 +216,7 @@
 
         </div> <!-- middleScreen ends from here -->
 
-        <div class="rightScreen pt-12 w-1/2 h-full sticky top-0">
+        <div class="rightScreen pt-12 pl-5 pr-[10rem] w-[32rem] h-screen sticky top-0">
 
             <div class="w-full h-fit p-4 border-2 border-zinc-200 rounded-lg"> <!-- follow recommondation -->
                 <p class="text-xl font-black mb-5">Who to follow</p>
