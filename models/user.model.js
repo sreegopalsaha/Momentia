@@ -19,8 +19,22 @@ const userSchema = new mongoose.Schema({
         trim: true,
     },
     password: String,
-    profilePicture: String,
-    bio: String,
+    profilePicture: {
+        type: String,
+        default: "defaultprofilepic.jpg"
+    },
+    bio: {
+        type: String,
+        default: ""
+    },
+    location: {
+        type: String,
+        default: "Earth"
+    },
+    mood: {
+        type: String,
+        default: "Feeling New"
+    },
     posts: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Post"
@@ -31,12 +45,16 @@ const userSchema = new mongoose.Schema({
             ref: "User"
         }
     ],
-    following: [
+    followings: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User"
         }
     ],
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    }
 
 });
 
