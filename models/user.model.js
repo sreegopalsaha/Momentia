@@ -25,7 +25,6 @@ const userSchema = new mongoose.Schema({
     },
     bio: {
         type: String,
-        default: ""
     },
     location: {
         type: String,

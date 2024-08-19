@@ -3,9 +3,11 @@ const postImgInput = document.querySelector("#postImgInput");
 const allPostsContainer = document.querySelector(".allPostsContainer");
 const currentUserId = document.querySelector('.userDetails').dataset.userId;
 const requestedUserId = document.querySelector(".reqUserDetails").dataset.userId;
+const followBtn = document.querySelector(".followBtn");
+const followersCount = document.querySelector(".followersCount");
 
-console.log(currentUserId);
-console.log(requestedUserId);
+// console.log(currentUserId);
+// console.log(requestedUserId);
 
 // calculateTime start from here
 const calculateTime = (dbTime) => {
@@ -129,3 +131,21 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 });
+
+const handleFollowBtn = async() =>{
+    const res = await fetch(`/user/follow/${requestedUserId}`, {
+        method: "POST",
+        credentials: "include"
+    });
+    const data = await res.json();
+    if(data==1){
+        followBtn.innerHTML = "Following";
+        followersCount.innerText = parseInt(followersCount.innerText) +1;
+    } else if (data==-1){
+        followBtn.innerText = "Follow";
+        followersCount.innerText = parseInt(followersCount.innerText) - 1;
+    }else{
+        return;
+    }
+}
+followBtn.addEventListener("click", handleFollowBtn);

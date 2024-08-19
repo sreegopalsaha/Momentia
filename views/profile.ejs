@@ -81,7 +81,7 @@
                     </p> <!-- username  -->
                 </div>
 
-                <div class="followBtn ml-5 p-2 bg-red-500 text-white rounded-full cursor-pointer">
+                <div class="logoutBtn ml-5 p-2 bg-red-500 text-white rounded-full cursor-pointer">
                     <a href="/user/logout">Logout</a>
                 </div>
             </div> <!-- User Details of of Loggedin user ends from here -->
@@ -111,10 +111,19 @@
                         <img class="w-[8rem] object-cover" src="/media/uploads/<%=requestedUser.profilePicture%>"
                             alt="">
                     </div>
+                    <% if(currentUser._id.toString() === requestedUser._id.toString()) { %>
+                        <button
+                        class="editBtn w-[5rem] h-10 bg-green-300 text-black rounded-lg">
+                        Edit
+                        </button>
+                   <% }else{%>
+                        <button
+                        class="followBtn followed w-[5rem] h-10 bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 text-white rounded-lg">
+                        <%=currentUser.followings.includes(requestedUser._id) ? "Following" : "Follow"%>
+                        </button>
+                    <%}%>
 
-                    <button
-                        class="w-[5rem] h-10 bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 text-white rounded-lg">Follow</button>
-                </div>
+                </div> <!--Profile pic and follow btn-->
 
                 <div class="nameAndUsername flex flex-col items-start justify-center">
                     <p class="font-extrabold">
@@ -124,11 +133,13 @@
                     </p> <!-- username  -->
                 </div>
 
-                <div class="w-full h-fit flex mt-5 justify-start items-center text-sm">
-                    <p>
-                        <%=requestedUser.bio%>
-                    </p>
-                </div>  <!-- user bio div ends -->
+                <%if(requestedUser.bio){%>
+                    <div class="w-full h-fit flex justify-start items-center text-sm bg-blue-400">
+                        <p>
+                            <%=requestedUser.bio%>
+                        </p>
+                    </div>  <!-- user bio div ends -->     
+                <%}%>
 
                 <div class="locationAndMoodDiv flex flex-col gap-1 items-start justify-center mt-2">
                     <div class="flex gap-1  items-center justify-center">
@@ -141,17 +152,17 @@
 
                 <div class="followingFollowerDiv flex gap-5 items-center justify-start mt-2">
                     <div class="flex gap-1 cursor-pointer">
-                        <p class="text-black-400 font-bold">
+                        <p class="followingCount text-black-400 font-bold">
                             <%=requestedUser.followings.length%>
                         </p>
                         <p class="text-gray-600">Followings</p>
-                    </div> <!-- user name -->
+                    </div>
                     <div class="flex gap-1 cursor-pointer">
-                        <p class="text-black-400 font-bold">
+                        <p class="followersCount text-black-400 font-bold">
                             <%=requestedUser.followers.length%>
                         </p>
                         <p class="text-gray-600">Followers</p>
-                    </div> <!-- username  -->
+                    </div>
                 </div>
 
             </div> <!--  user basic details ends -->
