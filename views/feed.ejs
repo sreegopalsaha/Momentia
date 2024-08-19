@@ -55,6 +55,11 @@
                 <P class="">Settings</P>
             </div>
 
+            <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl cursor-pointer">
+                <i class="text-blue-700 fa-regular fa-user"></i>
+                <a href="/user/<%= user._id %>" class="">Profile</a>
+            </div>
+
             <div data-user-id="<%= user._id %>" class="userDetails hover:bg-zinc-200 p-2 rounded-full flex gap-1 items-center justify-start gap-2 cursor-pointer">
                 <!-- User Details of loggedin user -->
                 <div class="profilePic w-12 h-12 overflow-hidden rounded-full"> <!-- User Profile picture -->
@@ -65,12 +70,12 @@
                 <div class="nameAndUsername flex flex-col items-start justify-center ">
                     <p class="font-extrabold">
                         <%=user.fullname%>
-                    </p> <!-- user name -->
+                    <!-- </p> user name -->
                     <p class="text-sm leading-none">@<%=user.username%>
                     </p> <!-- username  -->
                 </div>
 
-                <div class="followBtn ml-5 p-2 bg-red-500 text-white rounded-full cursor-pointer">
+                <div class="logoutBtn ml-5 p-2 bg-red-500 text-white rounded-full cursor-pointer">
                     <a href="/user/logout">Logout</a>
                 </div>
             </div> <!-- User Details of of Loggedin user ends from here -->

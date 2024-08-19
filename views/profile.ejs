@@ -62,6 +62,11 @@
                 <P class="">Settings</P>
             </div>
 
+            <div class=" w-fit h-10 hover:bg-zinc-200 p-3 rounded-full gap-1 flex items-center justify-center text-2xl cursor-pointer">
+                <i class="text-blue-700 fa-regular fa-user"></i>
+                <a href="/user/<%= currentUser._id %>" class="">Profile</a>
+            </div>
+
             <div data-user-id="<%= currentUser._id %>"
                 class="userDetails hover:bg-zinc-200 p-2 rounded-full flex gap-1 items-center justify-start gap-2 cursor-pointer">
                 <!-- User Details of loggedin user -->

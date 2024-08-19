@@ -23,7 +23,7 @@ const calculateTime = (dbTime) => {
 
 
 document.addEventListener("DOMContentLoaded", async () => {
-    const res = await fetch("http://localhost:3000/api/getFeed", {
+    const res = await fetch("/api/getFeed", {
         method: 'GET',
         credentials: 'include'
     });
@@ -45,14 +45,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             postContainer.innerHTML = `
             <div class="userDetails flex items-center gap-1 h-12">
                 <div class="profilePicDiv w-10 h-10 rounded-full overflow-hidden">
-                    <img class="w-10"
-                        src="/media/uploads/${post.author.profilePicture}"
-                        alt="">
+                    <a href="/user/${post.author._id}">
+                    <img class="w-10" src="/media/uploads/${post.author.profilePicture}" alt="">
+                    </a>
                 </div>
     
                 <div class="nameAndTimeDiv flex-col items-start justify-center">
                     <div class="flex gap-2 items-center justify-center">
-                        <p class="font-bold">${post.author.fullname}</p>
+                        <a href="/user/${post.author._id}" class="font-bold hover:text-blue-600">${post.author.fullname}</a>
                         <i class="fa-solid fa-check" style="color: #74C0FC;"></i>
                     </div>
                     <p class="leading-none text-sm">
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     likeSticker.classList.replace("text-red-500", "text-blue-400");
                 }
 
-                const res = await fetch(`http://localhost:3000/post/like/${post._id}`, {
+                const res = await fetch(`/post/like/${post._id}`, {
                     method: 'POST',
                     credentials: 'include'
                 });
