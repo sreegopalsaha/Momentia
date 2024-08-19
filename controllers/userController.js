@@ -72,3 +72,10 @@ module.exports.userFollow = async (req, res) => {
         }
 };
 
+module.exports.userProfile = async (req, res) =>{
+    const currentUserId = req.user.id;
+    const requestedUserId = req.params.requestedUserId;
+    const requestedUser = await userModel.findById(requestedUserId);
+    const currentUser = await userModel.findById(currentUserId);
+    res.render("profile", {currentUser, requestedUser});
+}

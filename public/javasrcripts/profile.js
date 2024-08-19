@@ -1,7 +1,11 @@
 const imageUploader = document.querySelector("#imageUploader");
 const postImgInput = document.querySelector("#postImgInput");
 const allPostsContainer = document.querySelector(".allPostsContainer");
-const userId = document.querySelector('.userDetails').dataset.userId;
+const currentUserId = document.querySelector('.userDetails').dataset.userId;
+const requestedUserId = document.querySelector(".reqUserDetails").dataset.userId;
+
+console.log(currentUserId);
+console.log(requestedUserId);
 
 // calculateTime start from here
 const calculateTime = (dbTime) => {
@@ -13,17 +17,17 @@ const calculateTime = (dbTime) => {
     if (timeInMin < 60) {
         return `${timeInMin} min ago`;
     } else if (timeInMin < 1440) { // 1440 minutes = 24 hours
-        const timeInHours = Math.floor(timeInMin / 60);
+        const timeInHours = Math.ceil(timeInMin / 60);
         return `${timeInHours} hour${timeInHours > 1 ? 's' : ''} ago`;
     } else {
-        const timeInDays = Math.floor(timeInMin / 1440);
+        const timeInDays = Math.ceil(timeInMin / 1440);
         return `${timeInDays} day${timeInDays > 1 ? 's' : ''} ago`;
     }
 };
 
 
 document.addEventListener("DOMContentLoaded", async () => {
-    const res = await fetch("http://localhost:3000/api/getFeed", {
+    const res = await fetch(`http://localhost:3000/api/getPosts/${requestedUserId}`, {
         method: 'GET',
         credentials: 'include'
     });
@@ -33,14 +37,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (!data) {
         allPostsContainer.innerHTML = `
-        <div class="w-full h-[20rem] flex flex-col gap-5 items-center justify-center p-5">
-        <p>Oops! No posts here yet. Start following more awesome people to fill your feed with exciting content.</p>
-        <button class="w-[10rem] h-10 bg-blue-500 rounded-lg">View Suggestions</button>
+        <div class="w-full h-[10rem] flex flex-col gap-5 items-center justify-center p-5">
+        <p>Oops! No posts here yet. </p>
     </div>`
     } else {
         data.forEach(post => {
             const postContainer = document.createElement("div");
-            postContainer.classList.add("postContainer", "border-2", "border-zinc-200", "rounded-lg", "w-full", "h-fit", "p-4", "max-h-[30rem]");
+            postContainer.classList.add("postContainer", "border-2", "border-zinc-200", "rounded-lg", "w-full", "h-fit", "p-4" , "max-h-[30rem]");
 
             postContainer.innerHTML = `
             <div class="userDetails flex items-center gap-1 h-12">
@@ -75,7 +78,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     
                 <div
                     class="group likesDiv rounded-lg border-2 border-zinc-300 p-2 flex gap-1 items-center justify-center cursor-pointer">
-                    <i class="likeSticker ${post.likes.includes(userId) ? "liked fa-solid text-red-500" : "fa-regular text-blue-400"} fa-heart group-hover:text-red-500"></i>
+                    <i class="likeSticker ${post.likes.includes(currentUserId) ? "liked fa-solid text-red-500" : "fa-regular text-blue-400"} fa-heart group-hover:text-red-500"></i>
                     <p class="likesCount">${post.likes.length}</p>
                 </div>
     
@@ -101,15 +104,15 @@ document.addEventListener("DOMContentLoaded", async () => {
             likesDiv.addEventListener("click", async () => {
 
                 likeSticker.classList.toggle("liked");
+                
+               const isLiked = likeSticker.classList.contains('liked');
 
-                const isLiked = likeSticker.classList.contains('liked');
-
-                if (isLiked) {
+                if(isLiked){
                     likesCount.innerText = parseInt(likesCount.innerText) + 1;
                     likeSticker.classList.replace("fa-regular", "fa-solid");
                     likeSticker.classList.replace("text-blue-400", "text-red-500");
 
-                } else {
+                } else{
                     likesCount.innerText = parseInt(likesCount.innerText) - 1;
                     likeSticker.classList.replace("fa-solid", "fa-regular");
                     likeSticker.classList.replace("text-red-500", "text-blue-400");
@@ -121,29 +124,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 });
 
                 const data = await res.json();
-                console.log(data);
                 likesCount.innerText = data;
             });
         });
-    }
-});
-
-
-// _________________________________________________
-//		imageUploader start from here
-//_________________________________________________
-imageUploader.addEventListener("click", () => {
-    postImgInput.click();
-});
-
-postImgInput.addEventListener("change", () => {
-    const file = postImgInput.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            imagePreview.src = e.target.result;
-            imagePreview.classList.remove("hidden");
-        }
-        reader.readAsDataURL(file);
     }
 });
