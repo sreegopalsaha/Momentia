@@ -16,7 +16,6 @@ module.exports.userRegister = async (req, res) => {
                 email,
                 username,
                 password: hash,
-                profilePicture: "defaultprofilepic.jpg"
             });
 
             const token = generateToken(user);
@@ -46,18 +45,30 @@ module.exports.userLogout = (req, res) => {
     res.send("You are logout");
 }
 
-module.exports.userFollow = async(req, res) => {
-    const currentUser = await userModel.findById(req.user.id);
-    const toBeFollowUser = await userModel.findById(req.params.toBeFollowUserId);
-    if(!toBeFollowUser) return res.json("");
-    const isFollowed = currentUser.following.indexOf(toBeFollowUser._id);
+module.exports.userFollow = async (req, res) => {
+        const currentUser = await userModel.findById(req.user.id);
+        const toBeFollowUser = await userModel.findById(req.params.toBeFollowUserId);
+        
+        if (!toBeFollowUser) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        
+        const isFollowed = currentUser.followings.includes(toBeFollowUser._id);
 
-    if(isFollowed === -1){
-    currentUser.following.push(toBeFollowUser._id);
-    await currentUser.save();
-    return res.json("1");
-    }
-    currentUser.following.splice(isFollowed, 1);
-    await currentUser.save();
-    return res.json("-1");
-}
+        if (!isFollowed) {
+            // If not already following, add to the followings and followers lists
+            currentUser.followings.push(toBeFollowUser._id);
+            toBeFollowUser.followers.push(currentUser._id);
+            await currentUser.save();
+            await toBeFollowUser.save();
+            return res.json("1");
+        } else {
+            // If already following, remove from the followings and followers lists
+            currentUser.followings = currentUser.followings.filter(userId => !userId.equals(toBeFollowUser._id));
+            toBeFollowUser.followers = toBeFollowUser.followers.filter(userId => !userId.equals(currentUser._id));
+            await currentUser.save();
+            await toBeFollowUser.save();
+            return res.json("-1");
+        }
+};
+
