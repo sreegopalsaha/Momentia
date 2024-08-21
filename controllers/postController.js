@@ -34,6 +34,21 @@ const likePost = async (req, res) =>{
     post.likes.splice(isLiked, 1);
     await post.save();
     return res.json(post.likes.length);
-    }
+}
 
-module.exports = { newPost, likePost };
+const deletePost = async(req, res) =>{
+    const userId = req.user.id;
+    const postId = req.params.postId;
+    const user = await userModel.findById(userId);
+    const isValidPost = user.posts.indexOf(postId);
+    if(isValidPost !== -1){
+        user.posts.splice(isValidPost, 1);
+        await user.save();
+        await postModel.findOneAndDelete({_id: postId});
+        res.json("true");
+    }else{
+        res.json(false);
+    }
+}
+
+module.exports = { newPost, likePost, deletePost };
