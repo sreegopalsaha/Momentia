@@ -9,6 +9,16 @@ const followersCount = document.querySelector(".followersCount");
 // console.log(currentUserId);
 // console.log(requestedUserId);
 
+const isOwnProfile = currentUserId == requestedUserId;
+// console.log(isOwnProfile);
+const getDropDownContent = (postId) =>{
+    const dropDownContent = isOwnProfile ?
+`   <a class="w-full hover:text-blue-500" href="/post/edit/${postId}">Edit post</a>
+    <p class="w-full postDeleteBtn hover:text-blue-500 cursor-pointer" href="/post/del/${postId}">Delete post</p>` : 
+`   <a class="w-full hover:text-blue-500" href="/post/report/${postId}">Report post</a>`;
+    return dropDownContent;
+}
+
 // calculateTime start from here
 const calculateTime = (dbTime) => {
     const givenTime = new Date(dbTime);
@@ -45,7 +55,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else {
         data.forEach(post => {
             const postContainer = document.createElement("div");
-            postContainer.classList.add("postContainer", "border-2", "border-zinc-200", "rounded-lg", "w-full", "h-fit", "p-4" , "max-h-[30rem]");
+            postContainer.classList.add("postContainer", "border-2", "border-zinc-200", "rounded-lg", "w-full", "h-fit", "p-4" , "max-h-[30rem]", "relative");
 
             postContainer.innerHTML = `
             <div class="userDetails flex items-center gap-1 h-12">
@@ -56,7 +66,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 </div>
     
                 <div class="nameAndTimeDiv flex-col items-start justify-center">
-                    <div class="flex gap-2 items-center justify-center">
+                    <div class="flex gap-2 items-center justify-start">
                         <a href="/user/${post.author._id}" class="font-bold hover:text-blue-600">${post.author.fullname}</a>
                         <i class="fa-solid fa-check" style="color: #74C0FC;"></i>
                     </div>
@@ -64,6 +74,15 @@ document.addEventListener("DOMContentLoaded", async () => {
                         ${calculateTime(post.createdAt)}
                     </p>
                 </div>
+
+                <!--dropDown menu div starts-->
+                <div class="flex flex-grow justify-end">
+                <p class="dropDownBtn text-2xl text-black font-extrabold cursor-pointer">:<p/>
+                    <div class="dropDownContentDiv z-10 hidden absolute w-fit h-fit p-3 border-2 border-zinc-200 bg-white right-[-4rem] top-[4rem] flex flex-col gap-1 justify-start items-center">
+                        ${getDropDownContent(post._id)}
+                    </div>
+                </div>
+
             </div> <!-- userDetails ends -->
     
             <div class="postContent h-fit w-full max-w-full">
@@ -102,6 +121,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             const likesDiv = postContainer.querySelector(".likesDiv");
             const likesCount = postContainer.querySelector(".likesCount");
             const likeSticker = likesDiv.querySelector(".likeSticker");
+            const dropDownBtn = postContainer.querySelector(".dropDownBtn");
+            const dropDownContentDiv = postContainer.querySelector(".dropDownContentDiv");
+            const postDeleteBtn = dropDownContentDiv.querySelector(".postDeleteBtn");
 
             likesDiv.addEventListener("click", async () => {
 
@@ -127,7 +149,30 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 const data = await res.json();
                 likesCount.innerText = data;
-            });
+            }); // likes div event ends from here
+
+            const handleDropDownBtnClick = (e)=>{
+                dropDownContentDiv.classList.toggle("hidden");
+                e.stopPropagation();
+            }
+            
+            dropDownBtn.addEventListener("click", handleDropDownBtnClick);
+
+            // handle post delete
+            const handlePostDeleteBtnClick = async ()=>{
+                const res = await fetch(`/post/del/${post._id}`, {
+                    method: "post",
+                    credentials : "include"
+                });
+                const data = await res.json();
+                if(data){
+                    postContainer.remove();
+                }else{
+                    console.log("Something went wrong while deleting the post");
+                }
+            }
+            postDeleteBtn.addEventListener("click",handlePostDeleteBtnClick);
+
         });
     }
 });
